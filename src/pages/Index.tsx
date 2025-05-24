@@ -1,17 +1,58 @@
+import Header from "@/components/sections/Header";
+import HeroSection from "@/components/sections/HeroSection";
+import ServicesSection from "@/components/sections/ServicesSection";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { destinations } from "@/data/destinations";
 
 const Index = () => {
-  const destinations = [
-    {
-      id: 1,
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <HeroSection />
+      <ServicesSection />
+
+      {/* Destinations Section */}
+      <section id="destinations" className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Популярные направления
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Откройте для себя самые красивые места планеты с нашими турами
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {destinations.map((destination) => (
+              <Card key={destination.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="relative h-48">
+                  <img
+                    src={destination.image}
+                    alt={destination.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-lg">{destination.name}</CardTitle>
+                  <CardDescription>{destination.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold text-blue-600">
+                      {destination.price}
+                    </span>
+                    <Button variant="outline" size="sm">
+                      Подробнее
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
       name: "Мальдивы",
       price: "от 120,000 ₽",
       image:
